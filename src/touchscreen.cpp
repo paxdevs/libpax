@@ -3,7 +3,6 @@
 #include <cstddef>
 #include <fcntl.h>
 #include <linux/input.h>
-#include <optional>
 #include <unistd.h>
 
 PAXTouchscreen::PAXTouchscreen()
@@ -15,16 +14,17 @@ PAXTouchscreen::PAXTouchscreen()
     }
 }
 
-std::optional<TouchEvent> PAXTouchscreen::getTouchEvent()
+TouchEvent PAXTouchscreen::getTouchEvent()
 {
     int rd;
     struct input_event ev0[64]; 
     rd = read(touchpad_fd, ev0, sizeof(struct input_event) * 64);
 
+    TouchEvent ev = {-1, -1, -1};
+
     if (rd < (int)sizeof(struct input_event))
-        return std::nullopt;
+        return ev;
     
-    TouchEvent ev;
     for (int i = 0; i < rd / (int)sizeof(struct input_event); i++)
     {
         if (ev0[i].type == 3 && ev0[i].code == ABS_X)

@@ -1,8 +1,6 @@
 #ifndef TOUCHSCREEN_H
 #define TOUCHSCREEN_H
 
-#include <optional>
-
 struct TouchEvent {
     int x;
     int y;
@@ -24,7 +22,7 @@ public:
     
     PAXTouchscreen();
     ~PAXTouchscreen();
-    std::optional<TouchEvent> getTouchEvent();
+    TouchEvent getTouchEvent();
 };
 
 #endif
