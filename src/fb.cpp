@@ -1,4 +1,4 @@
-#include "fb.h"
+#include "pax/fb.h"
 
 #include <fcntl.h>
 #include <linux/fb.h>
