@@ -8,6 +8,8 @@ project(libpax)
 set(SOURCES
     src/fb.cpp
     src/keypad.cpp
+    src/touchscreen.cpp
+    src/sound.cpp
 )
 
 # Create the static library
