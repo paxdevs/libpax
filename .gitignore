@@ -31,5 +31,13 @@
 *.out
 *.app
 
+# CMake build files
+build/
+CMakeFiles/
+CMakeCache.txt
+CMakeScripts/
+cmake_install.cmake
+compile_commands.json
+Makefile
 
 .vscode

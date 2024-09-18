@@ -17,4 +17,4 @@ add_library(libpax STATIC ${SOURCES})
 target_include_directories(libpax PUBLIC include)
 
 # Set additional compiler flags or options
-target_compile_options(libpax PRIVATE -Wall -Wextra)
+target_compile_options(libpax PRIVATE -O3 -Wall -Wextra)
