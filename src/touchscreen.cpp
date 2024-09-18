@@ -7,10 +7,10 @@
 
 PAXTouchscreen::PAXTouchscreen()
 {
-    touchpad_fd = open("/dev/keypad", O_RDONLY | O_NONBLOCK);
+    touchpad_fd = open("/dev/tp", O_RDONLY | O_NONBLOCK);
     if (touchpad_fd < 0)
     {
-        throw "Failed to open /dev/keypad";
+        throw "Failed to open /dev/tp";
     }
 }
 
@@ -27,13 +27,14 @@ TouchEvent PAXTouchscreen::getTouchEvent()
     
     for (int i = 0; i < rd / (int)sizeof(struct input_event); i++)
     {
+        // Screen is inverted, so we need to swap x and y
         if (ev0[i].type == 3 && ev0[i].code == ABS_X)
         {
-            ev.x = ev0[i].value;
+            ev.y = ev0[i].value;
         }
         else if (ev0[i].type == 3 && ev0[i].code == ABS_Y)
         {
-            ev.y = ev0[i].value;
+            ev.x = ev0[i].value;
         }
 
         if (ev0[i].type == 1 && ev0[i].code == 330)
