@@ -1,4 +1,4 @@
-#include "sound.h"
+#include "pax/sound.h"
 
 #include <fcntl.h>
 #include <linux/input.h>
