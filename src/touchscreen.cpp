@@ -21,11 +21,11 @@ std::optional<TouchEvent> PAXTouchscreen::getTouchEvent()
     struct input_event ev0[64]; 
     rd = read(touchpad_fd, ev0, sizeof(struct input_event) * 64);
 
-    if (rd < sizeof(struct input_event))
+    if (rd < (int)sizeof(struct input_event))
         return std::nullopt;
     
     TouchEvent ev;
-    for (int i = 0; i < rd / sizeof(struct input_event); i++)
+    for (int i = 0; i < rd / (int)sizeof(struct input_event); i++)
     {
         if (ev0[i].type == 3 && ev0[i].code == ABS_X)
         {
