@@ -8,6 +8,10 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
+// Maximum x
+#define PAX_FRAMEBUFFER_WIDTH 240
+// Maximum y
+#define PAX_FRAMEBUFFER_HEIGHT 320
 
 inline uint16_t rgb16(uint8_t r, uint8_t g, uint8_t b)
 {
@@ -27,8 +31,9 @@ private:
 
     inline uint32_t getOffset(int x, int y)
     {
-        return (x + vinfo.xoffset) +
-               (y + vinfo.yoffset) * finfo.line_length;
+        // Screen is rotated
+        return (y + vinfo.xoffset) +
+               (x + vinfo.yoffset) * (finfo.line_length / 2);
     }
 
 public:
