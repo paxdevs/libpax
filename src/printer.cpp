@@ -17,6 +17,6 @@ int PAXPrinter::print(const void *buf, int len)
 
 int PAXPrinter::print(PAXPrinterCanvas &canvas)
 {
-    auto& buf = canvas.getBuffer();
+    auto& buf = canvas.getPrintBuffer();
     return print(buf.data(), buf.size());
 }

@@ -12,12 +12,12 @@ private:
     std::vector<uint8_t> buffer;
 
 public:
-    PAXPrinterCanvas(std::size_t height) : buffer((PAX_PRINTER_WIDTH / 8) * height, 0) {}
+    PAXPrinterCanvas(std::size_t height) : buffer((PAX_PRINTER_WIDTH / 8) * height + 2, 0) {}
     ~PAXPrinterCanvas() = default;
 
     inline void setPixel(int x, int y, bool value)
     {
-        auto &pix = buffer[y * (PAX_PRINTER_WIDTH / 8) + (x / 8)];
+        auto &pix = buffer[2 + y * (PAX_PRINTER_WIDTH / 8) + (x / 8)];
         int offset = 7 - (x % 8);
         if (value)
         {
@@ -36,7 +36,7 @@ public:
         return (pix >> offset) & 1;
     }
 
-    inline std::vector<uint8_t> &getBuffer()
+    inline std::vector<uint8_t> &getPrintBuffer()
     {
         return buffer;
     }
