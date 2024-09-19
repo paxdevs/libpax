@@ -6,25 +6,6 @@
 
 #define PAX_PRINTER_WIDTH 384
 
-class PAXPrinter
-{
-private:
-    int printer_fd;
-
-public:
-    // Disable copy constructor and assignment operator
-    PAXPrinter(const PAXPrinter &) = delete;
-    PAXPrinter &operator=(const PAXPrinter &) = delete;
-    // Allow move constructor and assignment operator
-    PAXPrinter(PAXPrinter &&) = default;
-    PAXPrinter &operator=(PAXPrinter &&) = default;
-
-    PAXPrinter();
-    ~PAXPrinter();
-    int print(const void *buf, int len);
-    int print(PAXPrinterCanvas &canvas);
-};
-
 class PAXPrinterCanvas
 {
 private:
@@ -59,6 +40,25 @@ public:
     {
         return buffer;
     }
+};
+
+class PAXPrinter
+{
+private:
+    int printer_fd;
+
+public:
+    // Disable copy constructor and assignment operator
+    PAXPrinter(const PAXPrinter &) = delete;
+    PAXPrinter &operator=(const PAXPrinter &) = delete;
+    // Allow move constructor and assignment operator
+    PAXPrinter(PAXPrinter &&) = default;
+    PAXPrinter &operator=(PAXPrinter &&) = default;
+
+    PAXPrinter();
+    ~PAXPrinter();
+    int print(const void *buf, int len);
+    int print(PAXPrinterCanvas &canvas);
 };
 
 #endif
