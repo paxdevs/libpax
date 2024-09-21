@@ -33,3 +33,8 @@ int PAXSound::playSound(const void *buf, int len)
 {
     return write(dsp_fd, buf, len);
 }
+
+PAXSound::~PAXSound()
+{
+    close(dsp_fd);
+}
