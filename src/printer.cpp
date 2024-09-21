@@ -20,3 +20,8 @@ int PAXPrinter::print(PAXPrinterCanvas &canvas)
     auto& buf = canvas.getPrintBuffer();
     return print(buf.data(), buf.size());
 }
+
+PAXPrinter::~PAXPrinter()
+{
+    close(printer_fd);
+}
